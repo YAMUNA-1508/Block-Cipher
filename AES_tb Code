@@ -1,0 +1,43 @@
+module AES_tb; 
+   
+  // Testbench signals 
+  reg enable; 
+  wire e128, d128; 
+ 
+  // Instantiate the AES module 
+  AES uut ( 
+    .enable(enable), 
+    .e128(e128), 
+    .d128(d128) 
+  ); 
+ 
+  // Test procedure 
+  initial begin 
+    $display("Starting AES Testbench..."); 
+     
+    // Initialize signals 
+    enable = 0; 
+    #10; 
+     
+    // ENABLE DEC & ENC 
+    enable = 1; 
+    #10; 
+ 
+    // Check encryption result 
+    if (e128)  
+      $display("Encryption Test Passed"); 
+    else  
+      $display("Encryption Test Failed"); 
+ 
+    // Check decryption result 
+    if (d128)  
+      $display("Decryption Test Passed"); 
+    else  
+      $display("Decryption Test Failed"); 
+ 
+     
+    #10; 
+    $finish; 
+  end 
+ 
+endmodule
